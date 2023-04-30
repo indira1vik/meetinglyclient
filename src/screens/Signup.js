@@ -3,8 +3,8 @@ import Axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 
 function Signup() {
+    
     const navigate = useNavigate();
-
     const [empid,setEmpid] = useState("");
     const [fname,setFname] = useState("");
     const [email,setEmail] = useState("");
@@ -12,8 +12,6 @@ function Signup() {
     const [phone,setPhone] = useState("");
     const [pass,setPass] = useState("");
     const [pos,setPos] = useState("");
-    const [offstart,setOffstart] = useState("");
-    const [offend,setOffend] = useState("");
 
     const handleSignup = () => {
         Axios.post('http://localhost:3001/addEmployee',{
@@ -23,12 +21,12 @@ function Signup() {
             username:uname,
             phone:phone,
             password:pass,
-            position:pos,
-            offstart:offstart,
-            offend:offend
+            position:pos
         }).then((response)=>{
             if (response.data === "Success"){
-                navigate('/home');
+                navigate('/home',{state:{empid}});
+            } else if (response.data === "Error"){
+                alert("Fill the form...");
             }
         }).catch(()=>{
             alert("Incorrect Form Submission!");
@@ -55,6 +53,16 @@ function Signup() {
                     name='name'
                     onChange={(e)=>{
                         setFname(e.target.value);
+                    }}
+                />
+                <br></br>
+                <input
+                    placeholder='Position'
+                    type='text'
+                    id='position'
+                    name='position'
+                    onChange={(e)=>{
+                        setPos(e.target.value);
                     }}
                 />
                 <br></br>
@@ -95,36 +103,6 @@ function Signup() {
                     name='password'
                     onChange={(e)=>{
                         setPass(e.target.value);
-                    }}
-                />
-                <br></br>
-                <input
-                    placeholder='Position'
-                    type='text'
-                    id='position'
-                    name='position'
-                    onChange={(e)=>{
-                        setPos(e.target.value);
-                    }}
-                />
-                <br></br>
-                <input
-                    placeholder='Off-Start hours'
-                    type='text'
-                    id='offstart'
-                    name='offstart'
-                    onChange={(e)=>{
-                        setOffstart(e.target.value);
-                    }}
-                />
-                <br></br>
-                <input
-                    placeholder='Off-End hours'
-                    type='text'
-                    id='offend'
-                    name='offend'
-                    onChange={(e)=>{
-                        setOffend(e.target.value);
                     }}
                 />
                 <br></br>

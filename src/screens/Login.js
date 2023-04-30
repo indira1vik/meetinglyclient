@@ -3,28 +3,43 @@ import { useNavigate } from 'react-router-dom';
 import Axios from 'axios';
 
 function Login() {
-    const [uname, setUname] = useState("");
+    const [empid, setEmpid] = useState("");
     const [pass, setPass] = useState("");
     const navigate = useNavigate();
     const handleSignup = () => {
         navigate('/signup');
     }
     const handleCredentials = () => {
-        // Axios.post('http://localhost:3001/',{})
+        Axios.post('http://localhost:3001/checkLogin',{
+            empid:empid,
+            password:pass
+        }).then((response)=>{
+            if (response.data === "Success"){
+                alert("Login Successful...");
+                navigate('/home',{state:{empid}});
+            } else if (response.data === "Wrong") {
+                alert("Wrong Credentials");
+            } else if (response.data === "Error") {
+                alert("Error...");
+            }
+        }).catch((err)=>{
+            alert("Error");
+        })
     }
     return (
         <div>
             <h2>Login</h2>
             <div>
                 <input
-                    placeholder='Username'
+                    placeholder='Employee ID'
                     type='text'
-                    id='username'
-                    name='username'
+                    id='empid'
+                    name='empid'
                     onChange={(event)=>{
-                        setUname(event.target.value);
+                        setEmpid(event.target.value);
                     }}
                 />
+                <br></br>
                 <input
                     placeholder='Password'
                     type='text'
@@ -34,7 +49,9 @@ function Login() {
                         setPass(event.target.value);
                     }}
                 />
+                <br></br>
                 <button onClick={handleCredentials}>Login</button>
+                <br></br>
                 <button onClick={handleSignup}>New employee? click here</button>
             </div>
         </div>
