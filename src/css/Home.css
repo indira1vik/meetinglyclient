@@ -1,0 +1,109 @@
+.navbar {
+    width: 100%;
+    background-color: green;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 3vh;
+    box-sizing: border-box;
+}
+
+.home-website-title {
+    font-size: 4.5vh;
+    font-weight: bolder;
+}
+
+.left-menu {
+    display: flex;
+    gap: 2vh;
+}
+
+.logout-btn {
+    background-color: transparent;
+    border: 0;
+    cursor: pointer;
+}
+
+.profile-btn {
+    background-color: transparent;
+    border: 0;
+    cursor: pointer;
+}
+
+.icon {
+    width: 6vh;
+    height: 6vh;
+}
+
+.container {
+    padding: 6vh;
+}
+
+.intro {
+    font-size: 4vh;
+    font-weight: bold;
+    padding-bottom: 4vh;
+}
+
+.meetings {
+    background: linear-gradient(white, white) padding-box,
+        linear-gradient(180deg, green, transparent) border-box;
+    border-radius: 2vh 2vh 0 0;
+    border: 1px solid transparent;
+    padding: 3vh;
+    width: 54%;
+}
+.add-meeting{
+    background: linear-gradient(white, white) padding-box,
+        linear-gradient(180deg, green, transparent) border-box;
+    border-radius: 2vh 2vh 0 0;
+    border: 1px solid transparent;
+    padding: 3vh;
+    width: 36%;
+}
+.schedule-form{
+    display: flex;
+    flex-direction: column;
+}
+.schedule-form input{
+    padding: 2vh 3vh;
+    border: 1px solid green;
+    border-radius: 4vh;
+    font-size: 2vh;
+}
+.schedule-form button{
+    padding: 2vh;
+    border: 1px solid green;
+    border-radius: 4vh;
+    background-color: green;
+    font-size: 2vh;
+    color: white;
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+}
+.schedule-form button:hover{
+    border: 1px solid green;
+    color: black;
+    background-color: transparent;
+    cursor: pointer;
+}
+.sub-topic {
+    font-size: 3vh;
+    font-weight: bold;
+    padding-bottom: 3vh;
+}
+.each-meet{
+    padding: 3vh;
+    background-image: linear-gradient(180deg,lightgreen,transparent);
+    border-radius: 1vh;
+    margin-bottom: 3vh;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5vh;
+}
+.sch{
+    padding: 2vh 4vh;
+    margin-bottom: 2vh;
+    width: 100%;
+}

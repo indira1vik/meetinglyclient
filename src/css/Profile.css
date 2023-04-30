@@ -1,0 +1,48 @@
+.prof-form ul{
+    list-style: none;
+    padding: 0;
+}
+.prof-form li{
+    padding: 3vh;
+    margin-bottom: 2vh;
+    background: linear-gradient(white, white) padding-box,
+        linear-gradient(180deg, transparent, green) border-box;
+    border-radius: 0 0 2vh 2vh;
+    border: 1px solid transparent;
+    padding: 3vh;
+    font-size: 2.5vh;
+}
+.prof-container{
+    padding: 6vh;
+    width: 42%;
+}
+.stretch-con{
+    width: 90%;
+}
+.full-flex{
+    display: flex;
+}
+.busy-container{
+    width: 36%;
+    padding: 6vh;
+}
+.rem-btn{
+    padding: 1vh 2vh;
+    margin-left: 2vh;
+    background-color: red;
+    border: 1px solid red;
+}
+.rem-btn:hover{
+    border: 1px solid red;
+}
+.add-busy{
+    gap: 0;
+    padding-left: 3vh;
+    padding-right: 3vh;
+}
+.add-busy input{
+    width: 100%;
+}
+.add-busy button{
+    width: 109%;
+}

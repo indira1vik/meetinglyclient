@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import Axios from 'axios';
+import '../css/Login.css'
 
 function Login() {
     const [empid, setEmpid] = useState("");
@@ -10,49 +11,52 @@ function Login() {
         navigate('/signup');
     }
     const handleCredentials = () => {
-        Axios.post('http://localhost:3001/checkLogin',{
-            empid:empid,
-            password:pass
-        }).then((response)=>{
-            if (response.data === "Success"){
-                alert("Login Successful...");
-                navigate('/home',{state:{empid}});
-            } else if (response.data === "Wrong") {
-                alert("Wrong Credentials");
-            } else if (response.data === "Error") {
-                alert("Error...");
-            }
-        }).catch((err)=>{
-            alert("Error");
-        })
+        if (empid === "" || pass === "") {
+            alert("Please fill the form...");
+        } else {
+            Axios.post('https://meetinglybackendwebsite.onrender.com/checkLogin', {
+                empid: empid,
+                password: pass
+            }).then((response) => {
+                if (response.data === "Success") {
+                    navigate('/home', { state: { empid } });
+                } else if (response.data === "Wrong") {
+                    alert("Wrong Credentials");
+                } else if (response.data === "Error") {
+                    alert("Error...");
+                }
+            }).catch((err) => {
+                alert("Error");
+            })
+        }
     }
     return (
-        <div>
-            <h2>Login</h2>
-            <div>
-                <input
-                    placeholder='Employee ID'
-                    type='text'
-                    id='empid'
-                    name='empid'
-                    onChange={(event)=>{
-                        setEmpid(event.target.value);
-                    }}
-                />
-                <br></br>
-                <input
-                    placeholder='Password'
-                    type='text'
-                    id='password'
-                    name='password'
-                    onChange={(event)=>{
-                        setPass(event.target.value);
-                    }}
-                />
-                <br></br>
-                <button onClick={handleCredentials}>Login</button>
-                <br></br>
-                <button onClick={handleSignup}>New employee? click here</button>
+        <div className='login-screen'>
+            <div className='login-field'>
+                <div className='website-title'>Meetingly</div>
+                <div className='login-title'>Login</div>
+                <div className='login-form'>
+                    <input
+                        placeholder='Employee ID'
+                        type='text'
+                        id='empid'
+                        name='empid'
+                        onChange={(event) => {
+                            setEmpid(event.target.value);
+                        }}
+                    />
+                    <input
+                        placeholder='Password'
+                        type='password'
+                        id='password'
+                        name='password'
+                        onChange={(event) => {
+                            setPass(event.target.value);
+                        }}
+                    />
+                    <button className='loginbtn' onClick={handleCredentials}>Login</button>
+                    <button className='signupbtn' onClick={handleSignup}>New employee? Click here</button>
+                </div>
             </div>
         </div>
     )

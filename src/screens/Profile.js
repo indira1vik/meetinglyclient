@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import Axios from 'axios'
+import '../css/Profile.css'
 
 function Profile() {
     const location = useLocation();
@@ -18,7 +19,7 @@ function Profile() {
     const [offend, setOffend] = useState("");
 
     useEffect(() => {
-        Axios.post('http://localhost:3001/listBusy', {
+        Axios.post('https://meetinglybackendwebsite.onrender.com/listBusy', {
             empid: empid
         })
             .then((res) => {
@@ -30,7 +31,7 @@ function Profile() {
     }, [empid]);
 
     useEffect(() => {
-        Axios.post('http://localhost:3001/employeeDetails', {
+        Axios.post('https://meetinglybackendwebsite.onrender.com/employeeDetails', {
             empid: empid
         })
             .then((response) => {
@@ -53,7 +54,7 @@ function Profile() {
         if (offstart.length !== 5 || offend.length !== 5) {
             alert("Please give time in HH:MM format");
         } else {
-            Axios.post('http://localhost:3001/addBusy', {
+            Axios.post('https://meetinglybackendwebsite.onrender.com/addBusy', {
                 empid: empid,
                 offstart: offstart,
                 offend: offend
@@ -74,7 +75,7 @@ function Profile() {
     }
 
     const handleUpdate = () => {
-        Axios.post('http://localhost:3001/updateProfile', {
+        Axios.post('https://meetinglybackendwebsite.onrender.com/updateProfile', {
             empid: empid,
             uname: uname,
             pass: pass,
@@ -94,7 +95,7 @@ function Profile() {
     }
 
     const handleDeleteBusy = (start, end) => {
-        Axios.post('http://localhost:3001/deleteBusy', {
+        Axios.post('https://meetinglybackendwebsite.onrender.com/deleteBusy', {
             empid: empid,
             off_start: start,
             off_end: end
@@ -112,99 +113,106 @@ function Profile() {
     }
 
     return (
-        <div>
-            <h2>Welcome, {user.name}</h2>
-            <button onClick={handleEdit}>Edit Profile</button>
-            {
-                isEdit ?
-                    <div>
-                        <ul>
-                            <li>Empid : {user.empid}</li>
-                            <li><input
-                                placeholder='Username'
+        <div className='full-flex'>
+            <div className='prof-container'>
+                <div className='add-meeting stretch-con'>
+                    <button className='loginbtn sch' onClick={handleEdit}>Edit Profile</button>
+                    {
+                        isEdit ?
+                            <div className='schedule-form prof-form'>
+                                <ul>
+                                    <li>Empid : {user.empid}</li>
+                                    <li><input
+                                        placeholder='Username'
+                                        type='text'
+                                        id='username'
+                                        name='username'
+                                        onChange={(event) => {
+                                            setUname(event.target.value);
+                                        }}
+                                    />
+                                        <br></br>
+                                    </li>
+                                    <li>Email : {user.email}</li>
+                                    <li>Phone : {user.phone}</li>
+                                    <li>Position : {user.position}</li>
+                                    <li>
+                                        <input
+                                            placeholder='Password'
+                                            type='text'
+                                            id='password'
+                                            name='password'
+                                            onChange={(event) => {
+                                                setPass(event.target.value);
+                                            }}
+                                        />
+                                        <br></br>
+                                    </li>
+                                </ul>
+                                <button onClick={handleUpdate}>Save</button>
+                            </div>
+                            :
+                            <div className='prof-form'>
+                                <ul>
+                                    <li>Empid : {user.empid}</li>
+                                    <li>Username : {user.username}</li>
+                                    <li>Email : {user.email}</li>
+                                    <li>Phone : {user.phone}</li>
+                                    <li>Position : {user.position}</li>
+                                    <li>Password : {user.password}</li>
+                                </ul>
+                            </div>
+                    }
+                </div>
+            </div>
+            <div className='busy-container'>
+                <div className='add-meeting' style={{ width: '100%' }}>
+                    <div className='sub-topic'>Your busy time</div>
+                    {
+                        busyList.map((each) => {
+                            return (
+                                <div key={each._id} style={{ alignItems: 'center', marginBottom: '2vh', display:'flex'}}>
+                                    <div>
+                                        <span style={{ fontSize: '3vh' }}>{each.off_start}</span>-<span style={{ fontSize: '3vh' }}>{each.off_end}</span>
+                                    </div>
+                                    <button className='loginbtn rem-btn' onClick={event => handleDeleteBusy(each.off_start, each.off_end)}>Remove</button>
+                                </div>
+                            )
+                        })
+                    }
+                    <button className='loginbtn sch' onClick={handleOffBtn}>Add Off-hours</button>
+
+                </div>
+                {
+                    isBusy ?
+                        <div className='login-form add-busy'>
+                            <input
+                                placeholder='Off hours starting'
                                 type='text'
-                                id='username'
-                                name='username'
+                                id='offstart'
+                                name='offstart'
                                 onChange={(event) => {
-                                    setUname(event.target.value);
+                                    setOffstart(event.target.value);
                                 }}
                             />
-                                <br></br>
-                            </li>
-                            <li>Email : {user.email}</li>
-                            <li>Phone : {user.phone}</li>
-                            <li>Position : {user.position}</li>
-                            <li>
-                                <input
-                                    placeholder='Password'
-                                    type='text'
-                                    id='password'
-                                    name='password'
-                                    onChange={(event) => {
-                                        setPass(event.target.value);
-                                    }}
-                                />
-                                <br></br>
-                            </li>
-                        </ul>
-                        <button onClick={handleUpdate}>Save</button>
-                    </div>
-                    :
-                    <div>
-                        <ul>
-                            <li>Empid : {user.empid}</li>
-                            <li>Username : {user.username}</li>
-                            <li>Email : {user.email}</li>
-                            <li>Phone : {user.phone}</li>
-                            <li>Position : {user.position}</li>
-                            <li>Password : {user.password}</li>
-                        </ul>
-                    </div>
-            }
-            <div>
-                <h3>Your busy time</h3>
-                {
-                    busyList.map((each) => {
-                        return (
-                            <div key={each._id}>
-                                <span>{each.off_start}</span>
-                                -
-                                <span>{each.off_end}</span>
-                                <span><button onClick={event => handleDeleteBusy(each.off_start, each.off_end)}>Remove</button></span>
-                            </div>
-                        )
-                    })
+                            <br></br>
+                            <input
+                                placeholder='Off hours ending'
+                                type='text'
+                                id='offend'
+                                name='offend'
+                                onChange={(event) => {
+                                    setOffend(event.target.value);
+                                }}
+                            />
+                            <br></br>
+                            <button className='loginbtn' onClick={handleBusy}>Add +</button>
+                        </div>
+                        :
+                        null
                 }
             </div>
-            <button onClick={handleOffBtn}>Add Off-hours</button>
-            {
-                isBusy ?
-                    <div>
-                        <input
-                            placeholder='Off hours starting'
-                            type='text'
-                            id='offstart'
-                            name='offstart'
-                            onChange={(event) => {
-                                setOffstart(event.target.value);
-                            }}
-                        />
-                        <br></br>
-                        <input
-                            placeholder='Off hours ending'
-                            type='text'
-                            id='offend'
-                            name='offend'
-                            onChange={(event) => {
-                                setOffend(event.target.value);
-                            }}
-                        />
-                        <br></br>
-                        <button onClick={handleBusy}>Add +</button>
-                    </div>
-                    :
-                    null
-            }
+
 
         </div>
     )

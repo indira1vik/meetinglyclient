@@ -1,0 +1,60 @@
+.login-screen{
+    background-image: url("https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 100vh;
+}
+.login-field{
+    background-color: white;
+    width: fit-content;
+    min-height: 100vh;
+    text-align: center;
+    padding: 18vh;
+    box-sizing: border-box;
+    float: right;
+}
+.website-title{
+    font-size: 8vh;
+    font-weight: bolder;
+    color: green;
+}
+.login-title{
+    font-size: 4vh;
+    padding: 2vh;
+}
+.login-form{
+    display: flex;
+    flex-direction: column;
+    gap: 2vh;
+}
+.loginbtn{
+    padding: 2vh;
+    border: 1px solid green;
+    border-radius: 4vh;
+    background-color: green;
+    font-size: 2vh;
+    color: white;
+}
+.loginbtn:hover{
+    border: 1px solid green;
+    color: black;
+    background-color: transparent;
+    cursor: pointer;
+}
+.signupbtn{
+    background-color: transparent;
+    border: 0;
+    cursor: pointer;
+    text-decoration: underline;
+    font-size: 2vh;
+}
+.signupbtn:hover{
+    color: green;
+}
+.login-form input{
+    padding: 2vh 3vh;
+    border: 1px solid green;
+    border-radius: 4vh;
+    font-size: 2vh;
+    width: 24vw;
+}

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Axios from 'axios'
 import { useNavigate, useLocation } from 'react-router-dom'
+import '../css/Home.css'
 
 function Home() {
 
@@ -21,7 +22,7 @@ function Home() {
 
     // FUNCTIONS
     useEffect(() => {
-        Axios.post('http://localhost:3001/employeeDetails', {
+        Axios.post('https://meetinglybackendwebsite.onrender.com/employeeDetails', {
             empid: empid
         })
             .then((response) => {
@@ -33,7 +34,7 @@ function Home() {
     }, [empid, user.username]);
 
     useEffect(() => {
-        Axios.post('http://localhost:3001/listMeetings', {
+        Axios.post('https://meetinglybackendwebsite.onrender.com/listMeetings', {
             empid: empid,
             guest: user.username
         })
@@ -82,7 +83,7 @@ function Home() {
                     }
                 }
                 if (FLAG === 0) {
-                    Axios.post('http://localhost:3001/addMeetings', {
+                    Axios.post('https://meetinglybackendwebsite.onrender.com/addMeetings', {
                         title: title,
                         agenda: agenda,
                         created_by: empid,
@@ -119,7 +120,15 @@ function Home() {
 
     const displ = arr.map((ele) => {
         return (
-            <div key={ele._id}>{ele.title}</div>
+            <div key={ele._id} className='each-meet'>
+                <div style={{ fontSize: '3vh', fontWeight: 'bold' }}>{ele.title}</div>
+                <div style={{ fontSize: '2.5vh' }}>Agenda: {ele.agenda}</div>
+                <div style={{ display: 'flex', gap: '3vh' }}>
+                    <div style={{ fontSize: '2.5vh' }}>Created by : {ele.created_by}</div>
+                    <div style={{ fontSize: '2.5vh' }}>Guest : {ele.guest}</div>
+                </div>
+                <div style={{ fontSize: '2.5vh' }}>From {ele.meet_start} to {ele.meet_end}</div>
+            </div>
         )
     })
 
@@ -128,7 +137,7 @@ function Home() {
     }
 
     const checkGuestUser = (cg) => {
-        Axios.post('http://localhost:3001/checkGuest', {
+        Axios.post('https://meetinglybackendwebsite.onrender.com/checkGuest', {
             cg: cg
         })
             .then((res) => {
@@ -153,84 +162,98 @@ function Home() {
 
     return (
         <div>
-            <h2>Welcome, {user.name}</h2>
-            <button onClick={handleLogout}>Logout</button>
-            <button onClick={handleProfileClick}>Profile Page</button>
-            <div>
-                <h3>Upcoming Meetings</h3>
-                <div>{displ}</div>
-            </div>
-            <button onClick={handleScheduleClick}>Schedule Meeting +</button>
-            {
-                isDisplay ?
-                    <div>
-                        <input
-                            placeholder='Title'
-                            type='text'
-                            id='title'
-                            name='title'
-                            onChange={(e) => {
-                                setTitle(e.target.value);
-                            }}
-                        />
-                        <br></br>
-                        <input
-                            placeholder='Agenda'
-                            type='text'
-                            id='agenda'
-                            name='agenda'
-                            onChange={(e) => {
-                                setAgenda(e.target.value);
-                            }}
-                        />
-                        <br></br>
-                        <input
-                            placeholder='Guest'
-                            type='text'
-                            id='guest'
-                            name='guest'
-                            onChange={(e) => {
-                                setGuest(e.target.value);
-                            }}
-                        />
-                        <button onClick={handleOffCheck}>Check Off-hours</button>
-                        <div>
+            {/* design */}
+            <div className='full-screen'>
+                <div className='navbar'>
+                    <div className='home-website-title'>Meetingly</div>
+                    <div className='left-menu'>
+                        <button className='profile-btn' onClick={handleProfileClick}><img alt='Profile' src={require('../images/prof-icon.png')} className='icon' /></button>
+                        <button className='logout-btn' onClick={handleLogout}><img alt='Logout' src={require('../images/log-icon.png')} className='icon' /></button>
+                    </div>
+                </div>
+                <div className='container'>
+                    <div className='intro'>Welcome {user.name},</div>
+                    <div style={{ display: 'flex' ,justifyContent:'space-between'}}>
+                        <div className='meetings'>
+                            <div className='sub-topic'>Upcoming Meetings</div>
+                            <div>{displ}</div>
+                        </div>
+                        <div className='add-meeting'>
+                            <button className='loginbtn sch' onClick={handleScheduleClick}>Schedule Meeting +</button>
                             {
-                                gBusyList.map((each) => {
-                                    return (
-                                        <div key={each._id}>
-                                            <span>{each.off_start}</span>
-                                            -
-                                            <span>{each.off_end}</span>
+                                isDisplay ?
+                                    <div className='schedule-form'>
+                                        <input
+                                            placeholder='Title'
+                                            type='text'
+                                            id='title'
+                                            name='title'
+                                            onChange={(e) => {
+                                                setTitle(e.target.value);
+                                            }}
+                                        />
+                                        <br></br>
+                                        <input
+                                            placeholder='Agenda'
+                                            type='text'
+                                            id='agenda'
+                                            name='agenda'
+                                            onChange={(e) => {
+                                                setAgenda(e.target.value);
+                                            }}
+                                        />
+                                        <br></br>
+                                        <input
+                                            placeholder='Guest'
+                                            type='text'
+                                            id='guest'
+                                            name='guest'
+                                            onChange={(e) => {
+                                                setGuest(e.target.value);
+                                            }}
+                                        />
+                                        <button onClick={handleOffCheck}>Check Guest's Busy Hours</button>
+                                        <div style={{padding:'2vh'}}>
+                                            {
+                                                gBusyList.map((each) => {
+                                                    return (
+                                                        <div key={each._id} style={{textAlign:'center',padding:'1vh'}}>
+                                                            <span style={{fontSize:'3vh'}}>{each.off_start}</span>-<span style={{fontSize:'3vh'}}>{each.off_end}</span>
+                                                        </div>
+                                                    )
+                                                })
+                                            }
                                         </div>
-                                    )
-                                })
+                                        <input
+                                            placeholder='Meet starting time'
+                                            type='text'
+                                            id='meetstart'
+                                            name='meetstart'
+                                            onChange={(e) => {
+                                                setMeetstart(e.target.value);
+                                            }}
+                                        />
+                                        <br></br>
+                                        <input
+                                            placeholder='Meet end time'
+                                            type='text'
+                                            id='meetend'
+                                            name='meetend'
+                                            onChange={(e) => {
+                                                setMeetend(e.target.value);
+                                            }}
+                                        />
+                                        <br></br>
+                                        <button onClick={handleMeetingSchedule}>Add</button>
+                                    </div>
+                                    : null
                             }
                         </div>
-                        <input
-                            placeholder='Meet starting time'
-                            type='text'
-                            id='meetstart'
-                            name='meetstart'
-                            onChange={(e) => {
-                                setMeetstart(e.target.value);
-                            }}
-                        />
-                        <br></br>
-                        <input
-                            placeholder='Meet end time'
-                            type='text'
-                            id='meetend'
-                            name='meetend'
-                            onChange={(e) => {
-                                setMeetend(e.target.value);
-                            }}
-                        />
-                        <br></br>
-                        <button onClick={handleMeetingSchedule}>Add</button>
                     </div>
-                    : null
-            }
+                </div>
+            </div>
+            {/* design */}
+
         </div>
     )
 }
