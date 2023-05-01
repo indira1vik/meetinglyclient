@@ -1,5 +1,5 @@
 # Meetingly
-This project : [Website](https://roaring-arithmetic-a3b8ef.netlify.app/).
+This project : [Website Link](https://roaring-arithmetic-a3b8ef.netlify.app/).
 
 *Small Gist*
 <br>
@@ -10,3 +10,18 @@ This meeting website can be helpful in real-life company work.
 Starting with Login, Signup, Dashboard, and Profile Page, this is how the website is split.
 
 Below is the link for backend github [Server](https://github.com/indira1vik/meetinglybackend) Repo;
+
+### NOTE
+*Here are the steps to be followwed while using the web application*
+
+1. Login with `EmployeeID` and `Password`.
+2. If new user please `create a new user`.
+3. We reach the home page and we have editable `Schedule Meeting button`.
+4. On click we can add meeetings.
+5. **Please Enter `Employee Username` as the Guest name.**
+6. `Do not` refresh the page.
+7. Two buttons on Navbar are Profile Page & Logout.
+8. Moving to Profile page, we edit our `Username` and `Password`.
+9. Also, we can add our *Busy-hours/Off-hours*.
+
+**Thank you**
