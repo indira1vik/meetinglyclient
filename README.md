@@ -18,7 +18,7 @@ Below is the link for backend github [Server](https://github.com/indira1vik/meet
 ### NOTE
 *Here are the steps to be followwed while using the web application*
 
-1. Login with `EmployeeID` and `Password` (As the client-side hosting is slow the login credentials and singup credentials take time to load after clicking on their respective buttons).
+1. Login with `EmployeeID` and `Password` (As the client-side hosting is slow the, login credentials and singup credentials take time to load after clicking on their respective buttons).
 2. If new user please `create a new user`.
 3. We reach the home page and we have editable `Schedule Meeting button`.
 4. On click we can add meeetings.
