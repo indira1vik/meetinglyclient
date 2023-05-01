@@ -25,7 +25,7 @@ Below is the link for backend github [Server](https://github.com/indira1vik/meet
 9. Also, we can add our *Busy-hours/Off-hours*.
 
 *Here are some of the screenshots attached below*
-![Home Page](../screenshots/Helper%20Image.png)
-![Employee MongoDB](../screenshots/Employee%20Mongo.jpg)
-![Busy Hours MongoDB](../screenshots//Busy%20Mongodb.jpg)
-![Meetings MongoDB](../screenshots//Meeting%20MongoDB.jpg)
+![Home Page](./screenshots/Helper%20Image.png)
+![Employee MongoDB](./screenshots/Employee%20Mongo.jpg)
+![Busy Hours MongoDB](./screenshots//Busy%20Mongodb.jpg)
+![Meetings MongoDB](./screenshots//Meeting%20MongoDB.jpg)
