@@ -101,7 +101,6 @@ function Profile() {
         }).then((res) => {
             if (res.data === "Success") {
                 alert("Deleted...");
-                window.location.reload();
             } else if (res.data === "Error") {
                 alert("Cannot delete...");
             }
