@@ -1,6 +1,10 @@
 # Meetingly
 This project : [Website Link](https://roaring-arithmetic-a3b8ef.netlify.app/).
 
+The below given link is the updated website please have a look into it...
+<br>
+[Meetingly Website Link](https://meetingly-work-website.netlify.app/)
+
 *Small Gist*
 <br>
 This repository gives us a glimpse of what the client side (website) looks like.
