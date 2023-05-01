@@ -63,7 +63,6 @@ function Profile() {
                     if (response.data === "Success") {
                         alert("Added Busy hours...");
                         setIsbusy(!isBusy);
-                        window.location.reload();
                     } else {
                         alert("Error adding...");
                     }

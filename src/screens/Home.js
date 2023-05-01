@@ -153,7 +153,7 @@ function Home() {
     }
 
     const handleOffCheck = () => {
-        if (guest !== "") {
+        if (guest !== "" && guest !== user.username) {
             checkGuestUser(guest);
         } else {
             alert("Enter guest username...");
@@ -173,7 +173,7 @@ function Home() {
                 </div>
                 <div className='container'>
                     <div className='intro'>Welcome {user.name},</div>
-                    <div style={{ display: 'flex' ,justifyContent:'space-between'}}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                         <div className='meetings'>
                             <div className='sub-topic'>Upcoming Meetings</div>
                             <div>{displ}</div>
@@ -204,7 +204,7 @@ function Home() {
                                         />
                                         <br></br>
                                         <input
-                                            placeholder='Guest'
+                                            placeholder='Guest username'
                                             type='text'
                                             id='guest'
                                             name='guest'
@@ -213,12 +213,12 @@ function Home() {
                                             }}
                                         />
                                         <button onClick={handleOffCheck}>Check Guest's Busy Hours</button>
-                                        <div style={{padding:'2vh'}}>
+                                        <div style={{ padding: '2vh' }}>
                                             {
                                                 gBusyList.map((each) => {
                                                     return (
-                                                        <div key={each._id} style={{textAlign:'center',padding:'1vh'}}>
-                                                            <span style={{fontSize:'3vh'}}>{each.off_start}</span>-<span style={{fontSize:'3vh'}}>{each.off_end}</span>
+                                                        <div key={each._id} style={{ textAlign: 'center', padding: '1vh' }}>
+                                                            <span style={{ fontSize: '3vh' }}>{each.off_start}</span>-<span style={{ fontSize: '3vh' }}>{each.off_end}</span>
                                                         </div>
                                                     )
                                                 })
